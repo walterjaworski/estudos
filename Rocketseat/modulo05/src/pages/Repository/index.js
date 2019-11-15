@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import { Loading, Owner, IssueList } from './styles';
+import { Loading, Owner, IssueList, PullList } from './styles';
 
 export default class Repository extends Component {
   static propTypes = {
@@ -18,6 +18,7 @@ export default class Repository extends Component {
   state = {
     repository: [],
     issues: [],
+    pulls: [],
     loading: true,
   };
 
@@ -26,9 +27,15 @@ export default class Repository extends Component {
 
     const repoName = decodeURIComponent(match.params.repository);
 
-    const [repository, issues] = await Promise.all([
+    const [repository, issues, pulls] = await Promise.all([
       api.get(`/repos/${repoName}`),
       api.get(`/repos/${repoName}/issues`, {
+        params: {
+          state: 'open',
+          per_page: 5,
+        },
+      }),
+      api.get(`/repos/${repoName}/pulls`, {
         params: {
           state: 'open',
           per_page: 5,
@@ -39,12 +46,13 @@ export default class Repository extends Component {
     this.setState({
       repository: repository.data,
       issues: issues.data,
+      pulls: pulls.data,
       loading: false,
     });
   }
 
   render() {
-    const { repository, issues, loading } = this.state;
+    const { repository, issues, pulls, loading } = this.state;
 
     if (loading) {
       return <Loading>Carregando</Loading>;
@@ -57,6 +65,9 @@ export default class Repository extends Component {
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <h1>{repository.name}</h1>
           <p>{repository.description}</p>
+          <ul>
+            <li />
+          </ul>
         </Owner>
 
         <IssueList>
@@ -75,6 +86,23 @@ export default class Repository extends Component {
             </li>
           ))}
         </IssueList>
+
+        <PullList>
+          {pulls.map(pull => (
+            <li key={String(pull.id)}>
+              <img src={pull.user.avatar_url} alt={pull.user.login} />
+              <div>
+                <strong>
+                  <a href={pull.html_url}>{pull.title}</a>
+                  {pull.labels.map(label => (
+                    <span key={String(label.id)}>{label.name}</span>
+                  ))}
+                </strong>
+                <p>{pull.user.login}</p>
+              </div>
+            </li>
+          ))}
+        </PullList>
       </Container>
     );
   }
