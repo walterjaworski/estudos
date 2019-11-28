@@ -36,3 +36,14 @@ const usuario1 = {
 const usuario2 = { ...usuario1, nome: 'José'};
 ```
 Usuário2 tem o nome modificado, mas mantém as outras propriedades.
+
+## Styled Components
+É possível criar funções JS dentro das classes. O bloco de exemplo abaixo, seta a cor vermelha se a props error for true e a cor preta se a props error for false.
+
+```
+color: ${props => (props.error ? '#c00' : '#000')};
+```
+
+## ReactJs
+P: Quando que decido se vou utilizar um componente estilizado ou um componente html?
+R: Quando um componente possui mais de dois niveis de encadeamento, cria-se um novo elemento estilizado

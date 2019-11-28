@@ -3,7 +3,7 @@ import { FaUserCircle } from 'react-icons/fa'
 
 import { Container, ProfileLink } from './styles';
 
-import Logo from '../../../public/assets/facebook-logo.svg';
+import Logo from '../../../public/assets/fakebook-logo.svg';
 
 export default function topBar() {
   return (
