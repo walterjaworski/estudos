@@ -1,15 +1,15 @@
 # Estudos
-Repositório para estudos separados por pastas
+Repositório para estudos separados por pastas.
 
 ## ES6
 
 ### Map, Reduce e Filter
 
-**Map** - Faz um mapeamento da array
+**Map** - Faz um mapeamento da array.
 
-**Reduce** - Consome todo o array e transforma em um único número
+**Reduce** - Consome todo o array e transforma em um único número.
 
-**Filter** - Filtra o array conforme alguma informação passada, por exemplo filtrar os números divisíveis por 2
+**Filter** - Filtra o array conforme alguma informação passada, por exemplo filtrar os números divisíveis por 2.
 
 ### Rest e Spread
 
@@ -44,6 +44,32 @@ Usuário2 tem o nome modificado, mas mantém as outras propriedades.
 color: ${props => (props.error ? '#c00' : '#000')};
 ```
 
+No Styled Components do React Native, não funciona o encadeamento de classes como no ReactJs, exemplo:
+```
+export const Container = styled.Div`
+  background: #eee;
+
+  button {
+    border: 10px solid #c00;
+  }
+`;
+```
+
+Outro ponto é que não é permitido a criação de um css global quando se utiliza Styled Components no React Native, a única maneira de fazer algo semelhante seria criar uma pasta (para organizar os arquivos) e definir um estilo para algum elemento e importar nos componentes que desejo aplicá-los.
+
 ## ReactJs
 P: Quando que decido se vou utilizar um componente estilizado ou um componente html?
-R: Quando um componente possui mais de dois niveis de encadeamento, cria-se um novo elemento estilizado
+
+R: Quando um componente possui mais de dois niveis de encadeamento, cria-se um novo elemento estilizado!
+
+## React Native
+Depois de rodado o emulador de ios ou android pela primeira vez, não é necessário rodar
+```react-native run-ios```
+ou
+```react-native run-android```
+novamente pois o emulador já foi criado em sua máquina, basta rodar o comando
+```react-native start```
+que o emulador será reiniciado
+
+Dois comandos que podem ajudar caso esteja dando erro no emulador:
+```react-native start --reset-cache``` ou ```react-native run-ios``` ou ```react-native run-android``` dependendo do seu emulador.
