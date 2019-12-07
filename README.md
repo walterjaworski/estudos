@@ -73,3 +73,11 @@ que o emulador será reiniciado
 
 Dois comandos que podem ajudar caso esteja dando erro no emulador:
 ```react-native start --reset-cache``` ou ```react-native run-ios``` ou ```react-native run-android``` dependendo do seu emulador.
+
+## Arquitetura Flux
+Toda action deve possuir um "**type**" informando qual o tipo de ação, deve ser único;
+O estado do Redux é o único ponto de verdade, ou seja, não pode manter pedaços em diversos componentes;
+Não podemos mutar o estado do Redux sem uma action;
+Actions e Reducers não são assíncronas, ou seja, são funções puras;
+Qualquer lógica síncrona para regras de negócios deve ficar no reducer e nunca na action;
+**Nem toda aplicação precisa de redux, inicie sem ele e sinta a necessidade depois;**
