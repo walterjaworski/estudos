@@ -81,3 +81,9 @@ Não podemos mutar o estado do Redux sem uma action;
 Actions e Reducers não são assíncronas, ou seja, são funções puras;
 Qualquer lógica síncrona para regras de negócios deve ficar no reducer e nunca na action;
 **Nem toda aplicação precisa de redux, inicie sem ele e sinta a necessidade depois;**
+
+O Redux possui uma propriedade chamada **dispatch** serve para disparar as actions do Redux
+
+Reducers ouvem as actions
+
+Após executar uma ação, o Redux avisa todos os componentes que possuem um connect, que as informações foram atualizadas e as propriedades dentro do connect são atualizadas no componente
